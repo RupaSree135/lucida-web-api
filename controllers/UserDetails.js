@@ -79,7 +79,9 @@ exports.postLogin = (req, res, next) => {
                             res.status(200).send(user)
                         })
                     }
-                    res.status(500).send("password is incorrect");
+                    res.status(500).send({
+                        message: "Password is incorrect."
+                    });
                 })
                 .catch(err => {
                     console.log(err);
@@ -91,7 +93,7 @@ exports.postLogin = (req, res, next) => {
 exports.postLogout = (req, res, next) => {
     req.session.destroy((err) => {
         console.log(err);
-        res.status(200).send("User logged off successfully")
+        res.status(200).send({message : "User logged off successfully"})
     })
 }
 
